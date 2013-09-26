@@ -1,12 +1,12 @@
+-module(pacman).
+-export([start/0]).
+-export([pacman1/0]).
+-export([misspacman/0]).
+
 % to run:
 % erl
 % c(pacman).
 % pacman:start().
-
--module(pacman).
--export([start/0]).
-%-export([pacman1/0]).
-%-export([misspacman/0]).
 
 pacman1() ->
 	receive
