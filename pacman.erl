@@ -1,6 +1,6 @@
 -module(pacman).
 -export([start/0]).
--export([pacman1/0]).
+-export([pacman1/1]).
 -export([misspacman/0]).
 
 % to run:
@@ -8,7 +8,7 @@
 % c(pacman).
 % pacman:start().
 
-pacman1() ->
+pacman1(A) ->
 	receive
 		{From, fish} ->
 			io:format("I like fish very much~n"),
@@ -21,7 +21,7 @@ pacman1() ->
 		_ ->
 			io:format("NOTHING TO SEE HERE~n")
 	end,
-	pacman1().
+	pacman1(A+1).
 
 misspacman() ->
 	receive
@@ -38,7 +38,7 @@ misspacman() ->
 	misspacman().
 
 start() ->
-	Pacman = spawn(pacman, pacman1, []),
+	Pacman = spawn(pacman, pacman1, [0]),
 	Miss = spawn(pacman, misspacman, []),
 %	Joe ! {Miss, fish}.
 	Miss ! {boot, Pacman}.
